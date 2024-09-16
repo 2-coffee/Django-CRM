@@ -1,0 +1,33 @@
+<!-- Block content from django -->
+<!-- https://stackoverflow.com/questions/53383602/what-is-block-content-and-endblock-content-for-in-django -->
+ 
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-6 offset-md-3 align-middle">
+    {% if user.is_authenticated %}
+    <h1 >welcome to my page!</h1>
+    {% else %}
+    <h1>Login</h1>
+    <br/>
+    <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">User</label>
+              <input type="text" class="form-control" name="user_name" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" required>
+            </div>
+            <!-- <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            <button type="submit" class="btn btn-outline-success">Log In</button>
+          </form>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
